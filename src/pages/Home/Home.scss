@@ -1,0 +1,85 @@
+.homePageWrapper{
+    background-color: #1C1B26;
+    color: white;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    .formWrapper{
+        display: flex;
+        flex-direction: column;
+        margin: 10px;
+        padding: 30px;
+        background-color: #232432;
+        box-shadow: 10px 6px 35px -2px rgba(0,0,0,0.53);
+-webkit-box-shadow: 10px 6px 35px -2px rgba(0,0,0,0.53);
+-moz-box-shadow: 10px 6px 35px -2px rgba(0,0,0,0.53);
+        .top{
+            margin-bottom: 20px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            
+            img{
+                width: 300px;
+                margin-left: 10px;
+            }
+        }
+        .middle{
+            flex: 3;
+            form{
+                display: flex;
+                justify-content: space-between;
+                flex-direction: column;
+                input{
+                    
+                    outline: none;
+                    padding:10px 15px;
+                    margin: 10px;
+                    border: none;
+                    border-radius: 3px;
+                    font-weight: 600;
+                }
+                button{
+                    cursor: pointer;
+                    width: 100%;
+                    margin-top: 10px;
+                    margin-bottom: 10px;
+                    margin-left: auto;
+                    margin-right: auto;
+                    padding: 10px 15px;
+                    background-color: green;
+                    border: none;
+                    outline: none;
+                    color: white;
+                    font-weight: 600;
+                    border-radius: 3px;
+                    transition: ease-in-out 0.5s;
+
+                    &:hover{
+                        background-color: red;
+
+                    }
+
+                }
+            }
+        }
+        .bottom{
+            h4{
+                font-weight: 300;
+                color: rgb(223, 220, 220);
+                span{
+                    color: #40E97E;
+                    transition:  ease-in-out 0.5s;
+                    &:hover{
+                        text-decoration: underline;
+                        color: goldenrod;
+                    cursor: pointer;
+                    }
+                }
+            }
+        }
+    }
+}

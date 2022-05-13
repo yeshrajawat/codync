@@ -1,2 +1,5 @@
 1> npx create-react-app
 2> npm install react-router-dom
+3> Design the home page 
+4> npm install   uuid // to generate unique Id
+5> npm install react-hot-toast // to show the toast 

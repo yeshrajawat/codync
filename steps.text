@@ -3,3 +3,5 @@
 3> Design the home page 
 4> npm install   uuid // to generate unique Id
 5> npm install react-hot-toast // to show the toast 
+6> npm install react-avatar
+7> npm install codemirror

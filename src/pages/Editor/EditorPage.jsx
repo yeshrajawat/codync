@@ -32,7 +32,7 @@ const EditorPage = () => {
       </div>
       <div className="rightWrapper">
               <div className="editor">
-                <Editor/>
+               <Editor/>
               </div>
       </div>
 

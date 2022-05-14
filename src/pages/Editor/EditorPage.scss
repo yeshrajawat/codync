@@ -8,9 +8,7 @@
         position: relative;
         flex: 1;
         background-color:#232432 ;
-        box-shadow: 8px -1px 22px -4px rgba(0,0,0,0.43);
-        -webkit-box-shadow: 8px -1px 22px -4px rgba(0,0,0,0.43);
-        -moz-box-shadow: 8px -1px 22px -4px rgba(0,0,0,0.43);
+        
         
         .logo-container{
             
@@ -43,6 +41,7 @@
             justify-content: center;
             align-items: center;
             button{
+                font-weight: bold;
                 margin: 5px;
                 width: 70%;
                 padding:  5px 3px;
@@ -76,6 +75,6 @@
         
     }
     .rightWrapper{
-        flex: 8;
+        flex: 7;
     }
 }

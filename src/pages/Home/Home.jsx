@@ -65,8 +65,8 @@ const handleInputEnter = (e)=>{
               </div>
             </div>
             <div className="bottom">
-              <h4> If you don't have an invite then create 
-                <span onClick={(e)=> createNewRoom(e)}> &nbsp;new room</span> </h4>
+              <h4> If you don't have an invite then create &nbsp; 
+                <span onClick={(e)=> createNewRoom(e)}>new room</span> </h4>
             </div>
         </div>
     </div>

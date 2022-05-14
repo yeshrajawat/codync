@@ -1,0 +1,14 @@
+.client{
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
+    .avatar{
+        margin-left: auto;
+        margin-right: auto;
+    }
+    span {
+        color: white;
+        font-size: 14px;
+        text-align: center;
+    }
+}

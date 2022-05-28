@@ -1,13 +1,88 @@
-import React, { useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import Client from '../../components/clientcom/Client';
 import Editor from '../../components/Editor/Editor';
+import { initSocket } from '../../socket';
 import './EditorPage.scss'
+import ACTIONS from '../../actions'
+// const ACTIONS = require('../../actions');
+
+import { Navigate, useLocation,useNavigate, useParams } from 'react-router-dom';
+import toast from 'react-hot-toast';
+import { io } from 'socket.io-client';
 const EditorPage = () => {
 
-  const [clientList,setClientList] = useState([
-    {socketId:1,username:'Yesh Rajawat'},
-    {socketId:2,username:'Nish Rajawat'}
-  ]);
+  const socketRef = useRef(null);
+  const location = useLocation();
+  const reactNavigator = useNavigate();
+  const roomId = useParams();
+
+  const [clientList,setClientList] = useState([]);
+
+  useEffect(()=>{
+
+    const init = async() =>{
+
+      socketRef.current = await initSocket();
+      socketRef.current.on('connect_error',(err)=> handleErrors(err));
+      socketRef.current.on('connect_failed',(err)=> handleErrors(err));
+      
+      function handleErrors(e){
+        console.log('socket error',e);
+        toast.error('Socket Connection failed, try again later.');
+        reactNavigator('/');
+      }
+      
+
+        socketRef.current.emit(ACTIONS.JOIN,{
+          roomId,
+          username:location.state?.username,
+        });
+
+        //Listening for joined event
+
+        socketRef.current.on(ACTIONS.JOINED,
+          ({clients,username,socketId}) => {
+              if(username !== location.state.username){
+                toast.success(`${username} has joined the room.`);
+              }
+              else{
+                toast.success('You have joined the room');
+              }
+              
+              setClientList(clients);
+              console.log(clientList);
+            })
+
+        //Listening for disconnected User
+        socketRef.current.on(ACTIONS.DISCONNECTED,
+          ({socketId,username}) => {
+            toast.success(`${username} left the room.`);
+
+            setClientList((prev) => {
+                return prev.filter(client => client.socketId !== socketId)
+            })
+
+              
+            
+          })
+      
+    }
+
+    init();
+
+    return () => {
+      socketRef.current.disconnected();
+      socketRef.current.off(ACTIONS.JOINED);
+      socketRef.current.off(ACTIONS.DISCONNECTED);
+
+    }
+  },[]);
+
+if(!location.state){
+  return <Navigate to='/'/>
+}
+  
+
 
 
   return (

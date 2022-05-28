@@ -40,11 +40,18 @@ io.on('connection',(socket)=> {
 
    });
 
+   socket.on(ACTIONS.CODE_CHANGE,({code,roomId}) => {
+       console.log(roomId.roomId);
+    socket.in(roomId.roomId).emit(ACTIONS.CODE_CHANGE,{code},()=>{
+        console.log('sent',code);
+    })
+   })
+
    socket.on('disconnecting',()=>{
        const rooms = Array.from(socket.rooms);
        rooms.forEach((roomId) => {
            console.log(roomId);
-        socket.in(roomId).emit(ACTIONS.DISCONNECTED, {
+        socket.in(roomId.roomId).emit(ACTIONS.DISCONNECTED, {
            
             socketId:socket.id,
             username:userSocketMap[socket.id]

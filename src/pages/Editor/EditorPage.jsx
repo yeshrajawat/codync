@@ -107,7 +107,7 @@ if(!location.state){
       </div>
       <div className="rightWrapper">
               <div className="editor">
-               <Editor/>
+               <Editor socketRef = {socketRef} roomId ={roomId} />
               </div>
       </div>
 

@@ -13,6 +13,7 @@ const EditorPage = () => {
 
   const socketRef = useRef(null);
   const location = useLocation();
+  const codeRef = useRef(null);
   const reactNavigator = useNavigate();
   const roomId = useParams();
 
@@ -50,6 +51,9 @@ const EditorPage = () => {
               }
               
               setClientList(clients);
+              socketRef.current.emit(ACTIONS.SYNC_CODE,{
+                code:codeRef.current,
+              socketId})
               console.log(clientList);
             })
 
@@ -123,7 +127,10 @@ function leaveRoom(){
       </div>
       <div className="rightWrapper">
               <div className="editor">
-               <Editor socketRef = {socketRef} roomId ={roomId} />
+               <Editor socketRef = {socketRef} roomId ={roomId} 
+               onCodeChange={(code)=>
+               { codeRef.current = code}
+               } />
               </div>
       </div>
 

@@ -7,7 +7,7 @@ import 'codemirror/theme/dracula.css'
 import 'codemirror/addon/edit/closetag'
 import 'codemirror/addon/edit/closebrackets';
 import ACTIONS from '../../actions';
-const Editor = ({socketRef,roomId}) => {
+const Editor = ({socketRef,roomId, onCodeChange}) => {
 
 
     const editorRef = useRef(null);
@@ -25,8 +25,10 @@ const Editor = ({socketRef,roomId}) => {
 
                 editorRef.current.on('change', (instance,changes) => {
                   console.log(changes);
+                  var code = instance.getValue();
+                  onCodeChange(code);
                   if(changes.origin !== 'setValue'){
-                    var code = instance.getValue();
+                    
                     console.log('code->',code);
                     console.log('roomId->',roomId.roomId);
                     socketRef.current.emit(ACTIONS.CODE_CHANGE,{

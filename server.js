@@ -28,17 +28,17 @@ const getAllConnectedClients = (roomId)=> {
 }
 
 io.on('connection',(socket)=> {
-    console.log('socket connected',socket.id);
+
 
    socket.on(ACTIONS.JOIN,({roomId,username})=>{
 
     userSocketMap[socket.id] = username;
-    console.log(roomId.roomId);
+   
     socket.join(roomId.roomId);
     const clients = getAllConnectedClients(roomId.roomId);
-    console.log(clients);
+    
     clients.forEach(({socketId})=>{
-        console.log(username);
+        
         io.to(socketId).emit(ACTIONS.JOINED,{
             clients,
             username,
@@ -49,9 +49,9 @@ io.on('connection',(socket)=> {
    });
 
    socket.on(ACTIONS.CODE_CHANGE,({code,roomId}) => {
-       console.log(roomId.roomId);
+       
     socket.in(roomId.roomId).emit(ACTIONS.CODE_CHANGE,{code},()=>{
-        console.log('sent',code);
+        
     })
    })
 
@@ -67,8 +67,6 @@ io.on('connection',(socket)=> {
             socketId:socket.id,
             username:userSocketMap[socket.id]
             
-        } ,()=> {
-            console.log('disconnecting',roomId);
         })
        });
 
@@ -85,7 +83,7 @@ io.on('connection',(socket)=> {
 
 server.listen(PORT, (err) => {
     if(err){
-        console.log(err);
+        console.error(err);
         return ;
     }
     console.log("Successfully Listening to PORT ",PORT);

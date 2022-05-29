@@ -24,13 +24,12 @@ const Editor = ({socketRef,roomId, onCodeChange}) => {
                 })
 
                 editorRef.current.on('change', (instance,changes) => {
-                  console.log(changes);
+                 
                   var code = instance.getValue();
                   onCodeChange(code);
                   if(changes.origin !== 'setValue'){
                     
-                    console.log('code->',code);
-                    console.log('roomId->',roomId.roomId);
+                 
                     socketRef.current.emit(ACTIONS.CODE_CHANGE,{
                       code:code,
                       roomId
@@ -49,11 +48,10 @@ const Editor = ({socketRef,roomId, onCodeChange}) => {
 
 
 useEffect(()=> {
-  console.log('useffect')
+  
   if(socketRef.current){
     socketRef.current.on(ACTIONS.CODE_CHANGE,({code}) => {
-      console.log('received->',code);
-      if(code !== null){
+     if(code !== null){
         editorRef.current.setValue(code);
       }
     })

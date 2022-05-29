@@ -28,7 +28,6 @@ const EditorPage = () => {
       socketRef.current.on('connect_failed',(err)=> handleErrors(err));
       
       function handleErrors(e){
-        console.log('socket error',e);
         toast.error('Socket Connection failed, try again later.');
         reactNavigator('/');
       }
@@ -54,8 +53,7 @@ const EditorPage = () => {
               socketRef.current.emit(ACTIONS.SYNC_CODE,{
                 code:codeRef.current,
               socketId})
-              console.log(clientList);
-            })
+              })
 
         //Listening for disconnected User
         socketRef.current.on(ACTIONS.DISCONNECTED,

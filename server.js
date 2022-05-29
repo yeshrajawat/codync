@@ -50,12 +50,13 @@ io.on('connection',(socket)=> {
    socket.on('disconnecting',()=>{
        const rooms = Array.from(socket.rooms);
        rooms.forEach((roomId) => {
-           console.log(roomId);
-        socket.in(roomId.roomId).emit(ACTIONS.DISCONNECTED, {
+        socket.in(roomId).emit(ACTIONS.DISCONNECTED, {
            
             socketId:socket.id,
             username:userSocketMap[socket.id]
             
+        } ,()=> {
+            console.log('disconnecting',roomId);
         })
        });
 

@@ -56,10 +56,10 @@ const EditorPage = () => {
         //Listening for disconnected User
         socketRef.current.on(ACTIONS.DISCONNECTED,
           ({socketId,username}) => {
-            toast.success(`${username} left the room.`);
+            toast.success(`${username} has left the room.`);
 
             setClientList((prev) => {
-                return prev.filter(client => client.socketId !== socketId)
+                return prev.filter((client) => client.socketId !== socketId)
             })
 
               
@@ -82,6 +82,22 @@ if(!location.state){
   return <Navigate to='/'/>
 }
   
+  async function copyRoomId() {
+  try {
+    
+    await navigator.clipboard.writeText(roomId.roomId);
+    toast.success('Room id copied to clipboard.')
+
+  } catch (error) {
+    toast.error('Could not copy room id.')
+  }
+}
+
+
+function leaveRoom(){
+  reactNavigator('/');
+  window.location.reload(true);
+}
 
 
 
@@ -101,8 +117,8 @@ if(!location.state){
           </div>
 
           <div className="bottom">
-            <button className='copyId'>Copy ROOM ID</button>
-            <button className='leave'>Leave</button>
+            <button className='copyId' onClick={copyRoomId}>Copy ROOM ID</button>
+            <button className='leave' onClick={leaveRoom} >Leave</button>
           </div>
       </div>
       <div className="rightWrapper">

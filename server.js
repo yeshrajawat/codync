@@ -4,7 +4,7 @@ const {Server} = require('socket.io');
 const ACTIONS = require('./src/actions');
 const path = require('path');
 const app  = express();
-const PORT = process.env.PORT || 5000;
+const port = process.env.PORT || 5000;
 
 const server = http.createServer(app);
 const io = new Server(server);
@@ -81,11 +81,11 @@ io.on('connection',(socket)=> {
 
 
 
-server.listen(PORT, (err) => {
+server.listen(port, (err) => {
     if(err){
         console.error(err);
         return ;
     }
-    console.log("Successfully Listening to PORT ",PORT);
+    console.log("Successfully Listening to PORT ",port);
 })
 

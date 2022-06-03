@@ -1,6 +1,7 @@
-# Getting Started with Create React App
+##Codyc - Real Time Code editor where you can code together with you friends
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+Open[https://codync.herokuapp.com/](https://codync.herokuapp.com/) to view it's build version
 
 ## Available Scripts
 
@@ -16,4 +17,4 @@ Open [http://localhost:5000](http://localhost:5000) to view it in your browser.
 This Web App has been deployed on Heroku Platform. 
 
 
-Open[https://codync.herokuapp.com/](https://codync.herokuapp.com/) to view it's build version
+

@@ -1,4 +1,4 @@
-##Codyc - Real Time Code editor where you can code together with you friends
+## Codyc - Real Time Code editor where you can code together with you friends
 
 
 Open[https://codync.herokuapp.com/](https://codync.herokuapp.com/) to view it's build version
